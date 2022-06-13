@@ -28,4 +28,4 @@ Route::group(['middleware' => 'api'], function() {
     Route::post('/profile', [AuthController::class, 'profile']);
 });
 
-Route::post('moneytransfer', [\App\Http\Controllers\Mocks\MockController::class, 'moneytransfer'])->name('money-transfer')->middleware('jwt.auth');
+Route::middleware('jwt.auth')->name('money-transfer')->post('moneytransfer', [\App\Http\Controllers\Account\Transfer::class, 'moneyTransfer']);
