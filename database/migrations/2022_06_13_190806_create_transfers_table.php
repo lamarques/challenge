@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('payee')->unsigned();
             $table->date('appointment_date');
             $table->decimal('amount', 12, 2);
-            $table->char('status', 1);
+            $table->string('status' );
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('payer')->references('id')->on('users')->onDelete('cascade');
