@@ -29,3 +29,4 @@ Route::group(['middleware' => 'api'], function() {
 });
 
 Route::middleware('jwt.auth')->name('money-transfer')->post('moneytransfer', [\App\Http\Controllers\Account\TransferController::class, 'moneyTransfer']);
+Route::middleware('jwt.auth')->name('balance')->post('balance', [\App\Http\Controllers\Account\AccountController::class, 'balance']);
