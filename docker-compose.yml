@@ -9,7 +9,7 @@ services:
         ports:
             - '${APP_PORT:-80}:80'
         networks:
-            - challange
+            - challenge
         depends_on:
             - mysql
             - redis
@@ -21,7 +21,7 @@ services:
             - '.:/application'
             - './docker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
         networks:
-            - challange
+            - challenge
         depends_on:
             - mysql
             - redis
@@ -37,9 +37,9 @@ services:
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
-            - 'challange-mysql:/var/lib/mysql'
+            - 'challenge-mysql:/var/lib/mysql'
         networks:
-            - challange
+            - challenge
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
@@ -49,18 +49,18 @@ services:
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'challange-redis:/data'
+            - 'challenge-redis:/data'
         networks:
-            - challange
+            - challenge
         healthcheck:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
 networks:
-    challange:
+    challenge:
         driver: bridge
 volumes:
-    challange-mysql:
+    challenge-mysql:
         driver: local
-    challange-redis:
+    challenge-redis:
         driver: local
