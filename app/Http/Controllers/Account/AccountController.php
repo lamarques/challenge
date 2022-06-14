@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Application\Account\Shared\AccountApplicationInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Account;
-use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    public function __construct(private AccountApplicationInterface $accountApplication)
+    {
+    }
+
     public function balance() {
-        $user = Auth::user();
-        $account = Account::where('user_id', $user->id)->first();
-        $balance = $account->balance - $account->blocked_balance + $account->credit_balance;
-        return response()->json(['balance' => $balance]);
+        return response()->json(
+            $this->accountApplication->balance(auth()->user())
+        );
     }
 
 }
