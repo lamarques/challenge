@@ -9,6 +9,8 @@ class Transfer extends Model
 {
     use HasFactory;
 
+    protected $table = 'transfers';
+
     protected $fillable = [
         'appointment_date',
         'amount',
