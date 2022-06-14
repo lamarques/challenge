@@ -14,8 +14,8 @@ class AccountDomain implements AccountDomainInterface
     {
         $account = new AccountDto();
         $account->payer = $user->id;
-        $account->payee = $request->payee_id;
-        $account->value = $request->value;
+        $account->payee = $request-> payee;
+        $account->value = floatval($request->value);
 
         return $account;
     }

@@ -14,7 +14,7 @@ class AccountRequest extends FormRequest implements AccountRequestInterface
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class AccountRequest extends FormRequest implements AccountRequestInterface
     public function rules()
     {
         return [
-            'payee' => 'required',
+            'payee' => 'required|numeric',
             'value' => 'required|numeric|min:0|not_in:0',
         ];
     }
